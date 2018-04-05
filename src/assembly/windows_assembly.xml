@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!--
-Copyright (C) 2017 Norman Kluge
+Copyright (C) 2017 - 2018 Norman Kluge
  
 This file is part of ASGwrapper-asynctools.
  
@@ -58,6 +58,8 @@ along with ASGwrapper-asynctools.  If not, see <http://www.gnu.org/licenses/>.
 				<include>tools/petrify/cygwin1.dll</include>
 				<include>tools/punf/LICENSE.PUNF</include>
 				<include>tools/punf/punf.exe</include>
+				<include>tools/pcomp/LICENSE.PCOMP</include>
+				<include>tools/pcomp/pcomp.exe</include>
 			</includes>
 		</fileSet>
 	</fileSets>

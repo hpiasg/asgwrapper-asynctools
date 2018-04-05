@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!--
-Copyright (C) 2017 Norman Kluge
+Copyright (C) 2017 - 2018 Norman Kluge
  
 This file is part of ASGwrapper-asynctools.
  
@@ -55,6 +55,8 @@ along with ASGwrapper-asynctools.  If not, see <http://www.gnu.org/licenses/>.
 				<include>tools/petrify/petrify</include>
 				<include>tools/punf/LICENSE.PUNF</include>
 				<include>tools/punf/punf</include>
+				<include>tools/pcomp/LICENSE.PCOMP</include>
+				<include>tools/pcomp/pcomp</include>
 			</includes>
 		</fileSet>
 	</fileSets>

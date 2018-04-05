@@ -4,6 +4,7 @@ ASGwrapper-asynctools
 ASGwrapper-asynctools is a helper project to abstract the external tool calls of third party asynchronous tools:
 
 * Petrify
+* PCOMP
 * PUNF
 * MPSAT
 
