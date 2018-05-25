@@ -51,8 +51,8 @@ public class PcompInvoker extends ExternalToolsInvoker {
         //@formatter:off
         List<String> params = Arrays.asList(
             "-p", // remove unneeded places
-            //"-i", // common interface -> internal signals
-            "-d", // common interface -> dummy
+            "-i", // common interface -> internal signals
+//            "-d", // common interface -> dummy
             "@" + fileList.getName()
         );
         //@formatter:on
