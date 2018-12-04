@@ -39,7 +39,7 @@ public class PunfInvoker extends ExternalToolsInvoker {
     private InvokeReturn internalConvertGtoMci(File inFile, File outFile) {
         //@formatter:off
         List<String> params = Arrays.asList(
-            "-m=", outFile.getName(), 
+            "-m=" + outFile.getName(), 
             "-f=" + inFile.getName()
         );
         //@formatter:on

@@ -35,7 +35,7 @@ public class PunfMpsatCSCWrapper {
 
     public static InvokeReturn solveCSC(File inFile, File outFile) {
         File workingDir = WorkingdirGenerator.getInstance().getWorkingDir();
-        File mciFile = new File(workingDir, inFile.getAbsolutePath().replace(".g", "") + ".mci");
+        File mciFile = new File(workingDir, inFile.getName() + ".mci");
 
         InvokeReturn retPunft = PunfInvoker.convertGtoMci(inFile, mciFile);
         if(retPunft == null || !retPunft.getResult()) {
