@@ -37,7 +37,7 @@ public class PunfMpsatCSCWrapper {
         File workingDir = WorkingdirGenerator.getInstance().getWorkingDir();
         File mciFile = new File(workingDir, inFile.getName() + ".mci");
 
-        InvokeReturn retPunft = PunfInvoker.convertGtoMci(inFile, mciFile);
+        InvokeReturn retPunft = PunfInvoker.unfoldGFile(inFile, mciFile);
         if(retPunft == null || !retPunft.getResult()) {
             logger.error("PUNF Error with " + inFile);
             return null;
