@@ -1,7 +1,7 @@
 package de.uni_potsdam.hpi.asg.asynctoolswrapper;
 
 /*
- * Copyright (C) 2017 Norman Kluge
+ * Copyright (C) 2017 - 2019 Norman Kluge
  * 
  * This file is part of ASGwrapper-asynctools.
  * 
@@ -23,13 +23,24 @@ import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import de.uni_potsdam.hpi.asg.asynctoolswrapper.model.MpsatTransitionSequences;
 import de.uni_potsdam.hpi.asg.common.invoker.ExternalToolsInvoker;
 import de.uni_potsdam.hpi.asg.common.invoker.InvokeReturn;
+import de.uni_potsdam.hpi.asg.common.iohelper.FileHelper;
+import de.uni_potsdam.hpi.asg.common.stg.model.Transition.Edge;
 
 public class MpsatInvoker extends ExternalToolsInvoker {
+    private static final Logger logger = LogManager.getLogger();
 
     private MpsatInvoker() {
         super("mpsat");
+    }
+
+    public static InvokeReturn getTraces(File pnmlFile, String endSignalName, Edge endEdge) {
+        return new MpsatInvoker().internalGetTraces(pnmlFile, endSignalName, endEdge);
     }
 
     public static InvokeReturn solveCSC(File inFile, File outFile) {
@@ -49,6 +60,47 @@ public class MpsatInvoker extends ExternalToolsInvoker {
 
         InvokeReturn ret = run(params, "mpsat");
         errorHandling(ret); //TODO: check okCodes
+        return ret;
+    }
+
+    private InvokeReturn internalGetTraces(File pnmlFile, String endSignalName, Edge endEdge) {
+        String edgeStr = null;
+        switch(endEdge) {
+            case falling:
+                edgeStr = "is_minus";
+                break;
+            case rising:
+                edgeStr = "is_plus";
+                break;
+        }
+        File reachFile = FileHelper.getInstance().newTmpFile("property.re");
+        String reachStr = "exists t in tran S\"" + endSignalName + "\" { @t & " + edgeStr + " t }";
+        if(!FileHelper.getInstance().writeFile(reachFile, reachStr)) {
+            logger.error("Could not create reach file");
+            return null;
+        }
+        String outFileName = "out.log";
+
+        //@formatter:off
+        List<String> params = Arrays.asList(
+            "-Fs", "-d", "@" + reachFile.getName(), "-a", "-v1",
+            pnmlFile.getName(),
+            outFileName
+        );
+        //@formatter:on
+
+        addInputFilesToCopy(pnmlFile, reachFile);
+        addOutputFilesDownloadOnlyStartsWith(outFileName);
+
+        InvokeReturn ret = run(params, "mpsat");
+        if(!errorHandling(ret)) {
+            return ret;
+        }
+
+        File outFile = new File(localWorkingDir, outFileName);
+        MpsatTransitionSequences seq = MpsatTransitionSequences.createFromOutFile(outFile);
+        ret.setPayload(seq);
+
         return ret;
     }
 }

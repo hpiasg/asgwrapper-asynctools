@@ -1,7 +1,7 @@
 package de.uni_potsdam.hpi.asg.asynctoolswrapper;
 
 /*
- * Copyright (C) 2017 Norman Kluge
+ * Copyright (C) 2017 - 2019 Norman Kluge
  * 
  * This file is part of ASGwrapper-asynctools.
  * 
@@ -26,26 +26,27 @@ import org.apache.logging.log4j.Logger;
 
 import de.uni_potsdam.hpi.asg.common.invoker.InvokeReturn;
 import de.uni_potsdam.hpi.asg.common.iohelper.WorkingdirGenerator;
+import de.uni_potsdam.hpi.asg.common.stg.model.Transition.Edge;
 
-public class PunfMpsatCSCWrapper {
+public class PunfMpsatWrapper {
     private static final Logger logger = LogManager.getLogger();
 
-    private PunfMpsatCSCWrapper() {
+    private PunfMpsatWrapper() {
     }
 
     public static InvokeReturn solveCSC(File inFile, File outFile) {
         File workingDir = WorkingdirGenerator.getInstance().getWorkingDir();
-        File mciFile = new File(workingDir, inFile.getName() + ".mci");
+        File pnmlFile = new File(workingDir, inFile.getName() + ".pnml");
 
-        InvokeReturn retPunft = PunfInvoker.unfoldGFile(inFile, mciFile);
+        InvokeReturn retPunft = PunfInvoker.unfoldGFile(inFile, pnmlFile);
         if(retPunft == null || !retPunft.getResult()) {
             logger.error("PUNF Error with " + inFile);
             return null;
         }
 
-        InvokeReturn retMpsat = MpsatInvoker.solveCSC(mciFile, outFile);
+        InvokeReturn retMpsat = MpsatInvoker.solveCSC(pnmlFile, outFile);
         if(retMpsat == null || !retMpsat.getResult()) {
-            logger.error("MPSAT Error with " + mciFile);
+            logger.error("MPSAT Error with " + pnmlFile);
         }
 
         InvokeReturn retVal = new InvokeReturn(null);
@@ -54,6 +55,31 @@ public class PunfMpsatCSCWrapper {
         retVal.setLocalUserTime(retPunft.getLocalUserTime() + retMpsat.getLocalUserTime());
         retVal.setRemoteSystemTime(retPunft.getRemoteSystemTime() + retMpsat.getRemoteSystemTime());
         retVal.setRemoteUserTime(retPunft.getRemoteUserTime() + retMpsat.getRemoteUserTime());
+        return retVal;
+    }
+
+    public static InvokeReturn getTraces(File stgFile, String endSignalName, Edge endEdge) {
+        File workingDir = WorkingdirGenerator.getInstance().getWorkingDir();
+        File pnmlFile = new File(workingDir, stgFile.getName() + ".pnml");
+
+        InvokeReturn retPunft = PunfInvoker.unfoldGFile(stgFile, pnmlFile);
+        if(retPunft == null || !retPunft.getResult()) {
+            logger.error("PUNF Error with " + stgFile);
+            return null;
+        }
+
+        InvokeReturn retMpsat = MpsatInvoker.getTraces(pnmlFile, endSignalName, endEdge);
+        if(retMpsat == null || !retMpsat.getResult()) {
+            logger.error("MPSAT Error with " + pnmlFile);
+        }
+
+        InvokeReturn retVal = new InvokeReturn(null);
+        retVal.setResult(true);
+        retVal.setLocalSystemTime(retPunft.getLocalSystemTime() + retMpsat.getLocalSystemTime());
+        retVal.setLocalUserTime(retPunft.getLocalUserTime() + retMpsat.getLocalUserTime());
+        retVal.setRemoteSystemTime(retPunft.getRemoteSystemTime() + retMpsat.getRemoteSystemTime());
+        retVal.setRemoteUserTime(retPunft.getRemoteUserTime() + retMpsat.getRemoteUserTime());
+        retVal.setPayload(retMpsat.getPayload());
         return retVal;
     }
 }
