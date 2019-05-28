@@ -48,7 +48,7 @@ public class PunfInvoker extends ExternalToolsInvoker {
         addOutputFilesToExport(outFile);
 
         InvokeReturn ret = run(params, "punf");
-        errorHandling(ret);
+        errorHandling(ret, Arrays.asList(0, 1));
         return ret;
     }
 }
