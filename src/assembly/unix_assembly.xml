@@ -49,13 +49,13 @@ along with ASGwrapper-asynctools.  If not, see <http://www.gnu.org/licenses/>.
 			<directory>src/main/resources</directory>
 			<outputDirectory>.</outputDirectory>
 			<includes>
-				<include>tools/mpsat/LICENSE.MPSAT</include>
+				<include>tools/mpsat/LICENSE.MPSAT.txt</include>
 				<include>tools/mpsat/mpsat</include>
 				<include>tools/petrify/LICENSE.PETRIFY.txt</include>
 				<include>tools/petrify/petrify</include>
-				<include>tools/punf/LICENSE.PUNF</include>
+				<include>tools/punf/LICENSE.PUNF.txt</include>
 				<include>tools/punf/punf</include>
-				<include>tools/pcomp/LICENSE.PCOMP</include>
+				<include>tools/pcomp/LICENSE.PCOMP.txt</include>
 				<include>tools/pcomp/pcomp</include>
 			</includes>
 		</fileSet>
