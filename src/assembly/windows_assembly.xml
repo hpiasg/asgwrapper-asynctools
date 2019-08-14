@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!--
-Copyright (C) 2017 Norman Kluge
+Copyright (C) 2017 - 2018 Norman Kluge
  
 This file is part of ASGwrapper-asynctools.
  
@@ -49,15 +49,17 @@ along with ASGwrapper-asynctools.  If not, see <http://www.gnu.org/licenses/>.
 			<directory>src/main/resources</directory>
 			<outputDirectory>.</outputDirectory>
 			<includes>
-				<include>tools/mpsat/LICENSE.MPSAT</include>
+				<include>tools/mpsat/LICENSE.MPSAT.txt</include>
 				<include>tools/mpsat/mpsat.exe</include>
 				<include>tools/petrify/LICENSE.PETRIFY.txt</include>
 				<include>tools/petrify/petrify.exe</include>
 				<include>tools/petrify/petrify.dll</include>
 				<include>tools/petrify/LICENSE.CYGWIN.txt</include>
 				<include>tools/petrify/cygwin1.dll</include>
-				<include>tools/punf/LICENSE.PUNF</include>
+				<include>tools/punf/LICENSE.PUNF.txt</include>
 				<include>tools/punf/punf.exe</include>
+				<include>tools/pcomp/LICENSE.PCOMP.txt</include>
+				<include>tools/pcomp/pcomp.exe</include>
 			</includes>
 		</fileSet>
 	</fileSets>

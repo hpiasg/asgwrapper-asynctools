@@ -1,7 +1,7 @@
 package de.uni_potsdam.hpi.asg.asynctoolswrapper;
 
 /*
- * Copyright (C) 2017 Norman Kluge
+ * Copyright (C) 2017 - 2019 Norman Kluge
  * 
  * This file is part of ASGwrapper-asynctools.
  * 
@@ -32,14 +32,14 @@ public class PunfInvoker extends ExternalToolsInvoker {
         super("punf");
     }
 
-    public static InvokeReturn convertGtoMci(File inFile, File outFile) {
-        return new PunfInvoker().internalConvertGtoMci(inFile, outFile);
+    public static InvokeReturn unfoldGFile(File inFile, File outFile) {
+        return new PunfInvoker().internalUnfoldGFile(inFile, outFile);
     }
 
-    private InvokeReturn internalConvertGtoMci(File inFile, File outFile) {
+    private InvokeReturn internalUnfoldGFile(File inFile, File outFile) {
         //@formatter:off
         List<String> params = Arrays.asList(
-            "-m=", outFile.getName(), 
+            "-m=" + outFile.getName(), 
             "-f=" + inFile.getName()
         );
         //@formatter:on
@@ -48,7 +48,7 @@ public class PunfInvoker extends ExternalToolsInvoker {
         addOutputFilesToExport(outFile);
 
         InvokeReturn ret = run(params, "punf");
-        errorHandling(ret);
+        errorHandling(ret, Arrays.asList(0, 1));
         return ret;
     }
 }

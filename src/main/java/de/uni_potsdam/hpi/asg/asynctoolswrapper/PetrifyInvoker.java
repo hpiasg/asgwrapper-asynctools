@@ -1,7 +1,7 @@
 package de.uni_potsdam.hpi.asg.asynctoolswrapper;
 
 /*
- * Copyright (C) 2017 Norman Kluge
+ * Copyright (C) 2017 - 2019 Norman Kluge
  * 
  * This file is part of ASGwrapper-asynctools.
  * 
@@ -47,6 +47,10 @@ public class PetrifyInvoker extends ExternalToolsInvoker {
 
     public static InvokeReturn deriveFunctionsWithTM(File inFile, File libFile, File logFile, File stgOutFile, File eqnOutFile) {
         return new PetrifyInvoker().internalDeriveFunctionsWithTM(inFile, libFile, logFile, stgOutFile, eqnOutFile);
+    }
+
+    public static InvokeReturn processSTG(File stgInFile, File logFile, File stgOutFile) {
+        return new PetrifyInvoker().internalProcessSTG(stgInFile, logFile, stgOutFile);
     }
 
     private InvokeReturn internalSolveCSC(File inFile, File logFile, File outFile) {
@@ -110,6 +114,24 @@ public class PetrifyInvoker extends ExternalToolsInvoker {
         addOutputFilesToExport(stgOutFile, eqnOutFile, logFile);
 
         InvokeReturn ret = run(params, "petrifyeqn_" + inFile.getName());
+        errorHandling(ret);
+        return ret;
+    }
+
+    private InvokeReturn internalProcessSTG(File stgInFile, File logFile, File stgOutFile) {
+        //@formatter:off
+        List<String> params = Arrays.asList(
+            "-o", stgOutFile.getName(),
+            "-dead", 
+            "-log", logFile.getName(), 
+            stgInFile.getName()
+        );
+        //@formatter:on
+
+        addInputFilesToCopy(stgInFile);
+        addOutputFilesToExport(stgOutFile, logFile);
+
+        InvokeReturn ret = run(params, "petrify_" + stgInFile.getName());
         errorHandling(ret);
         return ret;
     }

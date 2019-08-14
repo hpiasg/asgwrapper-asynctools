@@ -1,5 +1,5 @@
 ASGwrapper-asynctools v1.0
-Copyright (C) 2017 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH
+Copyright (C) 2018-2019 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH
 
 This product includes software developed at Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH.
 The Software developed and owned by the Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH is licensed under the GNU GENERAL PUBLIC LICENSE Version 3 ("GPL") to all third parties and that license, as required by the GPL, is included in the LICENSE.txt file.
@@ -8,22 +8,27 @@ This software makes use of the following libraries:
 
 ASGcommon v4.0
 https://github.com/hpiasg/asgcommon
-Copyright (C) 2012-2017 Universitaet Augsburg, Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH
+Copyright (C) 2012-2019 Universitaet Augsburg, Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH
 Licensed under GNU General Public License (GPL), Version 3.0
 
 This software makes use of the following external software:
 
-MPSAT model checking/synthesis system v4.41beta
+MPSAT model checking/synthesis system v6.31beta
 http://homepages.cs.ncl.ac.uk/victor.khomenko/tools/mpsat/
-Copyright (C) 2000-2012 by Victor Khomenko
-License: tools/mpsat/LICENSE.MPSAT
+Copyright (C) 2000-2018 by Victor Khomenko
+License: tools/mpsat/LICENSE.MPSAT.txt
+
+PCOMP utility for computing the parallel composition of STGs v2.51beta
+http://homepages.cs.ncl.ac.uk/victor.khomenko/tools/pcomp/
+Copyright (C) 2008-2014 by Victor Khomenko, Newcastle University, UK
+License: tools/pcomp/LICENSE.PCOMP.txt
 
 Petrify: a tool for synthesis of Petri Nets and asynchronous circuits
 http://www.lsi.upc.edu/~jordicf/petrify/
 Copyright (C) 1999 The Universitat Politecnica de Catalunya
 License: tools/petrify/LICSENSE.PETRIFY.txt
 
-PUNF Petri net unfolder v8.51
+PUNF Petri net unfolder v9.11beta (parallel)
 http://homepages.cs.ncl.ac.uk/victor.khomenko/tools/punf/
-Copyright (C) 2000-2012 by Victor Khomenko
-License: tools/punf/LICENSE.PUNF
+Copyright (C) 2000-2018 by Victor Khomenko
+License: tools/punf/LICENSE.PUNF.txt
