@@ -53,9 +53,6 @@ along with ASGwrapper-asynctools.  If not, see <http://www.gnu.org/licenses/>.
 				<include>tools/mpsat/mpsat.exe</include>
 				<include>tools/petrify/LICENSE.PETRIFY.txt</include>
 				<include>tools/petrify/petrify.exe</include>
-				<include>tools/petrify/petrify.dll</include>
-				<include>tools/petrify/LICENSE.CYGWIN.txt</include>
-				<include>tools/petrify/cygwin1.dll</include>
 				<include>tools/punf/LICENSE.PUNF.txt</include>
 				<include>tools/punf/punf.exe</include>
 				<include>tools/pcomp/LICENSE.PCOMP.txt</include>
