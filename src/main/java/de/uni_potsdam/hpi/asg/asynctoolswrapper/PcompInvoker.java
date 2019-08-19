@@ -1,7 +1,7 @@
 package de.uni_potsdam.hpi.asg.asynctoolswrapper;
 
 /*
- * Copyright (C) 2018 Norman Kluge
+ * Copyright (C) 2018 - 2019 Norman Kluge
  * 
  * This file is part of ASGwrapper-asynctools.
  * 
@@ -63,7 +63,7 @@ public class PcompInvoker extends ExternalToolsInvoker {
         addInputFilesToCopy(fileList);
 
         InvokeReturn ret = run(params, "pcomp");
-        if(errorHandling(ret)) { //TODO: check okCodes
+        if(errorHandling(ret, Arrays.asList(0, 1))) {
             FileHelper.getInstance().writeFile(outFile, ret.getOutputStr());
         }
 
