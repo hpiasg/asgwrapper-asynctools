@@ -1,7 +1,7 @@
 ASGwrapper-asynctools
 ---------------------
 
-ASGwrapper-asynctools is a library which helps to abstract from calling third party asynchronous tools.
+ASGwrapper-asynctools is a library which helps to abstract from calling third party tools that have been build for dealing with asynchronous circuits.
 
 It supports
 * [Petrify](https://www.cs.upc.edu/~jordicf/petrify/) v5.2
@@ -13,7 +13,7 @@ We'd like to thank all the people involved in development of these tools for the
 
 ### Build instructions ###
 
-To build ASGwrapper-asynctools, Apache Maven v3 (or later) and the Java Development Kit (JDK) v1.7 (or later) are required.
+To build ASGwrapper-asynctools, Apache Maven v3.1.1 (or later) and the Java Development Kit (JDK) v1.8 (or later) are required.
 
 1. Build [ASGcommon](https://github.com/hpiasg/asgcommon)
 2. Execute `mvn clean install -DskipTests`
